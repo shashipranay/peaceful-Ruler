@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile | Organic Marketplace</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #4CAF50;
+            --secondary-color: #45a049;
+            --dark-color: #333;
+            --light-color: #f4f4f4;
+        }
+
+        body {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/dashboard/imgs/ordernow.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            font-family: 'Poppins', sans-serif;
+            color: var(--dark-color);
+        }
+
+        .navbar {
+            background: rgba(0, 0, 0, 0.85) !important;
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .navbar-brand {
+            color: var(--primary-color) !important;
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+
+        .nav-link {
+            color: white !important;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-color) !important;
+            transform: translateY(-2px);
+        }
+
+        .profile-container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-top: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .profile-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .profile-pic-container {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 1rem;
+        }
+
+        .profile-pic {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--primary-color);
+            transition: all 0.3s ease;
+        }
+
+        .profile-pic-edit {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            background: var(--primary-color);
+            color: white;
+            padding: 8px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .profile-pic-edit:hover {
+            transform: scale(1.1);
+            background: var(--secondary-color);
+        }
+
+        .profile-name {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--dark-color);
+            margin: 1rem 0;
+        }
+
+        .profile-email {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .profile-stats {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 1.5rem 0;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .order-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .order-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-color: var(--primary-color);
+        }
+
+        .badge-custom {
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+
+        .badge-delivered {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .badge-processing {
+            background-color: #2196F3;
+            color: white;
+        }
+
+        .badge-cancelled {
+            background-color: #f44336;
+            color: white;
+        }
+
+        .activity-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            border-radius: 10px;
+            background: rgba(76, 175, 80, 0.1);
+            margin-bottom: 1rem;
+        }
+
+        .activity-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .btn-custom {
+            background: var(--primary-color);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            border: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-custom:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        .settings-option {
+            padding: 1rem;
+            border-radius: 10px;
+            background: white;
+            margin-bottom: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .settings-option:hover {
+            background: rgba(76, 175, 80, 0.1);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 0.5s ease forwards;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/dashboard">
+                <i class="fas fa-leaf me-2"></i>Organic Marketplace
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/dashboard">
+                            <i class="fas fa-home me-1"></i>Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/order">
+                            <i class="fas fa-shopping-basket me-1"></i>Products
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/cart">
+                            <i class="fas fa-shopping-cart me-1"></i>Cart
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout">
+                            <i class="fas fa-sign-out-alt me-1"></i>Logout
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container py-5">
+        <div class="row">
+            <!-- Profile Information -->
+            <div class="col-lg-4">
+                <div class="profile-container">
+                    <div class="profile-header">
+                        <div class="profile-pic-container">
+                            <img src="<%= user.profilePic ? user.profilePic : '/dashboard/imgs/default-profile.png' %>" 
+                                 alt="Profile Picture" 
+                                 class="profile-pic" 
+                                 id="profilePreview">
+                            <form id="profilePicForm" action="/upload-profile-pic" method="POST" enctype="multipart/form-data">
+                                <label for="fileInput" class="profile-pic-edit">
+                                    <i class="fas fa-camera"></i>
+                                </label>
+                                <input type="file" name="profilePic" id="fileInput" hidden accept="image/*">
+                            </form>
+                        </div>
+                        <h2 class="profile-name"><%= user.fullName %></h2>
+                        <p class="profile-email"><%= user.email %></p>
+                        
+                        <div class="profile-stats">
+                            <div class="stat-item">
+                                <div class="stat-value"><%= orders.length %></div>
+                                <div class="stat-label">Orders</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">₹<%= orders.reduce((sum, order) => sum + order.price, 0) %></div>
+                                <div class="stat-label">Total Spent</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Actions -->
+                    <div class="quick-actions mt-4">
+                        <h3 class="section-title">Quick Actions</h3>
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-custom">
+                                <i class="fas fa-shopping-cart me-2"></i>View Cart
+                            </button>
+                            <button class="btn btn-custom">
+                                <i class="fas fa-heart me-2"></i>Wishlist
+                            </button>
+                            <button class="btn btn-custom">
+                                <i class="fas fa-cog me-2"></i>Settings
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Orders and Activity -->
+            <div class="col-lg-8">
+                <!-- Recent Orders -->
+                <div class="profile-container">
+                    <h3 class="section-title">Recent Orders</h3>
+                    <% if (orders.length > 0) { %>
+                        <% orders.forEach(order => { %>
+                            <div class="order-card">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h5 class="mb-1"><%= order.productName %></h5>
+                                        <p class="mb-0 text-muted">Order #<%= order._id %></p>
+                                    </div>
+                                    <div class="text-end">
+                                        <h5 class="mb-1">₹<%= order.price %></h5>
+                                        <span class="badge badge-custom badge-<%= order.status.toLowerCase() %>">
+                                            <%= order.status %>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        <% }) %>
+                    <% } else { %>
+                        <div class="text-center py-4">
+                            <i class="fas fa-shopping-bag fa-3x mb-3 text-muted"></i>
+                            <h5>No orders yet</h5>
+                            <p class="text-muted">Start shopping to see your orders here</p>
+                            <a href="/order" class="btn btn-custom">Shop Now</a>
+                        </div>
+                    <% } %>
+                </div>
+
+                <!-- Recent Activity -->
+                <div class="profile-container mt-4">
+                    <h3 class="section-title">Recent Activity</h3>
+                    <div class="activity-item">
+                        <div class="activity-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <div>
+                            <h6 class="mb-1">Added items to cart</h6>
+                            <small class="text-muted">2 hours ago</small>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <div>
+                            <h6 class="mb-1">Added items to wishlist</h6>
+                            <small class="text-muted">Yesterday</small>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div>
+                            <h6 class="mb-1">Reviewed a product</h6>
+                            <small class="text-muted">3 days ago</small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Account Settings -->
+                <div class="profile-container mt-4">
+                    <h3 class="section-title">Account Settings</h3>
+                    <div class="settings-option">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h6 class="mb-1">Personal Information</h6>
+                                <small class="text-muted">Update your personal details</small>
+                            </div>
+                            <i class="fas fa-chevron-right"></i>
+                        </div>
+                    </div>
+                    <div class="settings-option">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h6 class="mb-1">Password & Security</h6>
+                                <small class="text-muted">Manage your password and security settings</small>
+                            </div>
+                            <i class="fas fa-chevron-right"></i>
+                        </div>
+                    </div>
+                    <div class="settings-option">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h6 class="mb-1">Notifications</h6>
+                                <small class="text-muted">Customize your notification preferences</small>
+                            </div>
+                            <i class="fas fa-chevron-right"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Handle profile picture upload
+        document.getElementById('fileInput').addEventListener('change', async function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                // Show preview
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('profilePreview').src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+
+                // Submit form
+                const form = document.getElementById('profilePicForm');
+                const formData = new FormData(form);
+
+                try {
+                    const response = await fetch('/upload-profile-pic', {
+                        method: 'POST',
+                        body: formData
+                    });
+
+                    if (response.ok) {
+                        showToast('Profile picture updated successfully!', 'success');
+                    } else {
+                        throw new Error('Failed to update profile picture');
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                    showToast('Failed to update profile picture', 'error');
+                    // Revert preview to original image if upload fails
+                    document.getElementById('profilePreview').src = '<%= user.profilePic ? user.profilePic : "/dashboard/imgs/default-profile.png" %>';
+                }
+            }
+        });
+
+        // Toast notification function
+        function showToast(message, type = 'success') {
+            const toast = document.createElement('div');
+            toast.className = `toast align-items-center text-white bg-${type} border-0 position-fixed bottom-0 end-0 m-3`;
+            toast.setAttribute('role', 'alert');
+            toast.setAttribute('aria-live', 'assertive');
+            toast.setAttribute('aria-atomic', 'true');
+            
+            toast.innerHTML = `
+                <div class="d-flex">
+                    <div class="toast-body">
+                        ${message}
+                    </div>
+                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+                </div>
+            `;
+            
+            document.body.appendChild(toast);
+            const bsToast = new bootstrap.Toast(toast);
+            bsToast.show();
+            
+            toast.addEventListener('hidden.bs.toast', () => {
+                toast.remove();
+            });
+        }
+
+        // Add animation to elements on scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-fade-in');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            });
+
+            document.querySelectorAll('.profile-container').forEach(container => {
+                observer.observe(container);
+            });
+        });
+    </script>
+</body>
+</html>

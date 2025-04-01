@@ -1,0 +1,136 @@
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+    /* background: url('./loginPage/bg-.jpeg') no-repeat center center/cover; */
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+
+ /* Navbar */
+ .navbar {
+    background: #0b0c06 ; /* Dark green */
+    padding: 20px 0;
+}
+
+
+.navbar-brand {
+    font-size: 2rem; /* Larger brand logo text */
+    font-weight: 700;
+}
+
+.navbar-nav .nav-link {
+    font-size: 1.2rem; /* Larger navigation links */
+    padding: 12px 20px; /* More padding for bigger clickable areas */
+    color: white !important;
+}
+.navbar-nav .nav-item {
+    margin-right: 15px; /* Adjust spacing between nav items */
+}
+
+.navbar-nav .nav-link {
+    padding: 10px 15px; /* Increase padding around links */
+}
+
+.navbar-toggler {
+    font-size: 1.5rem; /* Bigger toggle button for mobile */
+}
+
+.navbar-nav .nav-link:hover {
+    color: #28a745 !important;
+    font-weight: bold;
+}
+
+
+/* Hero Section */
+.hero-section {
+    background: url('imgs/img3.jpg') no-repeat center center/cover;
+    background-color: rgba(0, 0, 0, 0.6); /* Fallback color */
+    background-blend-mode: overlay; /* Makes the image slightly transparent */
+    padding: 100px 0;
+    text-align: center;
+    color: white;
+}
+
+.hero-section h1 {
+    font-size: 3rem;
+    font-weight: 700;
+}
+
+.hero-section p {
+    font-size: 1.2rem;
+}
+
+.hero-section .btn {
+    padding: 12px 25px;
+    font-size: 1.2rem;
+    border-radius: 30px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    transition: 0.3s;
+}
+
+.hero-section .btn:hover {
+    background-color: #218838;
+}
+
+
+/* About Section */
+.about-section {
+    padding: 50px 0;
+    text-align: center;
+}
+
+.about-section h2 {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+/* Cards */
+.card {
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card img {
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+.card-body {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+}
+
+/* Footer */
+footer {
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+}
+html {
+    scroll-behavior: smooth;
+}
+
+
+footer a {
+    color: #28a745;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}

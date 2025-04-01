@@ -1,0 +1,60 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up</title>
+  <link rel="stylesheet" href="/loginPage/index.css">
+</head>
+<body>
+  <div class="wrapper">
+    <div class="title-text">
+      <div class="title">Sign Up</div>
+    </div>
+    <div class="form-container">
+      <div class="form-inner">
+        <form action="/signup" method="POST"> 
+          <div class="field">
+            <input type="text" name="fullName" placeholder="Full Name" required> 
+          </div>
+          <div class="field">
+            <input type="email" name="email" placeholder="Email Address" required> 
+          </div>
+          <div class="field">
+            <input type="password" name="password" placeholder="Password" required> 
+          </div>
+          <div class="field">
+            <input type="password" name="confirmPassword" placeholder="Confirm Password" required> 
+          </div>
+          <div class="field btn">
+            <input type="submit" value="Sign Up">
+          </div>
+          <div class="login-link">Already a member? <a href="/login">Login now</a></div>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="/path/to/your/css/file.css">
+</head>
+<body>
+    <h1>Sign Up</h1>
+    <form action="/signup" method="POST">
+        <input type="text" name="fullName" placeholder="Full Name" required>
+        <input type="email" name="email" placeholder="Email" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <label>
+            <input type="checkbox" name="isFarmer"> Are you a farmer?
+        </label>
+        <button type="submit">Sign Up</button>
+    </form>
+</body>
+</html>
